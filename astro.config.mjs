@@ -12,5 +12,9 @@ export default defineConfig({
   },
 
   integrations: [svelte()],
-  adapter: cloudflare()
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  })
 });
