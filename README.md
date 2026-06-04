@@ -64,16 +64,24 @@ npm run dev
 
 ## Deploy
 
+### Manual
+
 ```bash
 npm run build
+npx wrangler d1 migrations apply prova-db --remote
 npx wrangler deploy
 ```
 
-Apply migrations to production:
+### GitHub Actions (CI/CD)
 
-```bash
-npx wrangler d1 migrations apply prova-db --remote
-```
+The workflow in `.github/workflows/deploy.yml` deploys automatically on every push to `main`.
+
+Add these two secrets in **Settings → Secrets and variables → Actions**:
+
+| Secret | Where to find it |
+|--------|-----------------|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare Dashboard → My Profile → API Tokens → Create Token (*Edit Cloudflare Workers* template) |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Dashboard → sidebar (Account ID) |
 
 ## Project structure
 
